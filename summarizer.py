@@ -11,7 +11,9 @@ def summarizer(prefixes, quota):
 
         supernets = {}
         for subnet in prefixes:
-            if not getattr(subnet, "prefixlen", None) or not getattr(subnet, "subnets", None):
+            if not getattr(subnet, "prefixlen", None) or not getattr(
+                subnet, "subnets", None
+            ):
                 subnet = ipaddress.IPv4Network(subnet)
             k = subnet.supernet(new_prefix=i) if subnet.prefixlen > i else subnet
             supernets.setdefault(k, set()).add(subnet)
