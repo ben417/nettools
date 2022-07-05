@@ -12,7 +12,7 @@ def net_to_glob(n):
     10.1.1.1/32 -> 10.1.1.1
     0.0.0.0/0   -> "*"
     """
-    if not getattr(n, "prefixlen") or not getattr(n, "subnets"):
+    if not getattr(n, "prefixlen", None) or not getattr(n, "subnets", None):
         n = ipaddress.IPv4Network(n)
 
     for i in range(5):
